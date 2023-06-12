@@ -176,6 +176,7 @@ Tenga en cuenta que estas pruebas asumen que se han configurado correctamente lo
 
 ```
 Recuerda que el archivo `requirements.txt` debe contener las dependencias necesarias para el proyecto. Asegúrate de incluir todas las dependencias y versiones específicas que requieras.
+```
 
 # Flask API para gestión de items
 
