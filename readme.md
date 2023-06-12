@@ -291,3 +291,5 @@ bash
 Copy code
 curl -X DELETE http://localhost:5131/items/1
 Recuerda reemplazar 1 con el código real del item que deseas obtener, modificar o eliminar.
+
+En el archivo TiendaDeportiva.postman_collection.json  está la coleción de Postman con los posibles Requests
