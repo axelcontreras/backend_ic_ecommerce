@@ -27,7 +27,7 @@ def create_item():
     nuevo_item = request.get_json()
     print("got request", nuevo_item)  
     crear_item(**nuevo_item)
-    return jsonify({'mensaje': 'Item creado exitosamente'}), 20
+    return jsonify({'mensaje': 'Item creado exitosamente'}), 200
 
 @app.route('/items/<int:codigo>', methods=['PUT'])
 def update_item(codigo):
