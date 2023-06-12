@@ -83,7 +83,7 @@ Si deseas crear una base de datos llamada "itemsDB" con un usuario "postgres" y 
 
    Tenga en cuenta que el segundo comando establece una contraseña vacía para el usuario "postgres". Si deseas establecer una contraseña diferente, reemplaza las comillas vacías con tu contraseña elegida.
 
-6. ¡Listo! Ahora tienes la base de datos "itemsDB" y el usuario "postgres" configurados. Asegúrate de utilizar estos detalles de conexión en el archivo `conf/database.json` del proyecto:
+6. Ahora tienes la base de datos "itemsDB" y el usuario "postgres" configurados. Asegúrate de utilizar estos detalles de conexión en el archivo `conf/database.json` del proyecto:
 
    ```json
    {
@@ -98,6 +98,30 @@ Si deseas crear una base de datos llamada "itemsDB" con un usuario "postgres" y 
 
 Recuerda que estos pasos son una guía básica para crear una base de datos y un usuario en PostgreSQL. Si necesitas una configuración más avanzada o específica, consulta la documentación oficial de PostgreSQL o busca recursos adicionales en línea.
 
+7. Creación de la tabla "items"
+La tabla "items" almacenará los registros de los diferentes items. Para crearla, se utiliza la siguiente estructura de campos:
+
+codigo (SERIAL PRIMARY KEY): Campo autoincremental que representa el código único de cada item.
+nombre (VARCHAR(255) NOT NULL): Campo de texto que almacena el nombre del item. Es obligatorio y tiene un límite de 255 caracteres.
+talla (VARCHAR(50)): Campo de texto que almacena la talla del item. Tiene un límite de 50 caracteres.
+color (VARCHAR(50)): Campo de texto que almacena el color del item. Tiene un límite de 50 caracteres.
+precio (NUMERIC(10, 2)): Campo numérico que almacena el precio del item. El formato es de hasta 10 dígitos, con 2 decimales.
+cantidad (INTEGER): Campo entero que almacena la cantidad disponible del item.
+imagen (VARCHAR(255)): Campo de texto que almacena la ruta de la imagen del item. Tiene un límite de 255 caracteres.
+A continuación se muestra la consulta SQL para crear la tabla "items" con la estructura mencionada:
+
+ ```bash
+      CREATE TABLE IF NOT EXISTS items (
+         codigo SERIAL PRIMARY KEY,
+         nombre VARCHAR(255) NOT NULL,
+         talla VARCHAR(50),
+         color VARCHAR(50),
+         precio NUMERIC(10, 2),
+         cantidad INTEGER,
+         imagen VARCHAR(255)
+      );
+   ```
+Esta consulta crea la tabla "items" con los campos especificados, incluyendo las restricciones necesarias.
 
 ## Uso
 
@@ -152,3 +176,118 @@ Tenga en cuenta que estas pruebas asumen que se han configurado correctamente lo
 
 ```
 Recuerda que el archivo `requirements.txt` debe contener las dependencias necesarias para el proyecto. Asegúrate de incluir todas las dependencias y versiones específicas que requieras.
+
+# Flask API para gestión de items
+
+Esta es una API Flask para gestionar items en una base de datos. Proporciona endpoints para obtener, crear, modificar y eliminar items.
+
+## Dependencias
+
+Asegúrate de tener las siguientes dependencias instaladas:
+
+- Flask
+- psycopg2
+
+Puedes instalar las dependencias utilizando `pip`:
+
+```bash
+pip install Flask psycopg2
+Uso
+Asegúrate de tener la configuración de la base de datos correctamente establecida en el archivo conf/database.json. Luego, puedes ejecutar la aplicación ejecutando el archivo app.py:
+
+bash
+Copy code
+python app.py
+La aplicación se ejecutará en http://localhost:5131.
+
+Endpoints
+La API proporciona los siguientes endpoints:
+
+Obtener todos los items
+bash
+Copy code
+GET /items
+Este endpoint devuelve una lista de todos los items disponibles en la base de datos.
+
+Obtener un item por código
+bash
+Copy code
+GET /items/<codigo>
+Este endpoint devuelve un item específico de la base de datos según su código. Si el item no se encuentra, devuelve un mensaje de error.
+
+Crear un nuevo item
+bash
+Copy code
+POST /items
+Este endpoint permite crear un nuevo item en la base de datos. Debes proporcionar los datos del item en formato JSON en el cuerpo de la solicitud.
+
+Ejemplo de cuerpo de solicitud:
+
+json
+Copy code
+{
+  "nombre": "Camiseta",
+  "talla": "M",
+  "color": "Azul",
+  "precio": 29.99,
+  "cantidad": 10,
+  "imagen": "camiseta.jpg"
+}
+Modificar un item existente
+bash
+Copy code
+PUT /items/<codigo>
+Este endpoint permite modificar un item existente en la base de datos. Debes proporcionar los datos actualizados del item en formato JSON en el cuerpo de la solicitud.
+
+Ejemplo de cuerpo de solicitud:
+
+json
+Copy code
+{
+  "nombre": "Camiseta",
+  "talla": "L",
+  "color": "Rojo",
+  "precio": 39.99,
+  "cantidad": 5,
+  "imagen": "camiseta_roja.jpg"
+}
+Eliminar un item
+bash
+Copy code
+DELETE /items/<codigo>
+Este endpoint permite eliminar un item de la base de datos según su código.
+
+Respuestas
+Las respuestas de la API se devuelven en formato JSON.
+
+Para las operaciones exitosas, se devuelve un objeto JSON con un mensaje indicando el resultado de la operación.
+Para los errores, se devuelve un objeto JSON con un mensaje de error y un código de estado HTTP correspondiente.
+Ejemplos
+Aquí hay algunos ejemplos de cómo interactuar con la API utilizando la herramienta curl:
+
+Obtener todos los items:
+
+bash
+Copy code
+curl http://localhost:5131/items
+Obtener un item por código:
+
+bash
+Copy code
+curl http://localhost:5131/items/1
+Crear un nuevo item:
+
+bash
+Copy code
+curl -X POST -H "Content-Type: application/json" -d '{"nombre": "Camiseta", "talla": "M", "color": "Azul", "precio": 29.99, "cantidad": 10, "imagen": "camiseta.jpg"}' http://localhost:5131/items
+Modificar un item existente:
+
+bash
+Copy code
+curl -X PUT -H "Content-Type: application/json" -d '{"nombre": "Camiseta", "talla": "L", "color": "Rojo", "precio": 39.99, "cantidad": 5, "imagen": "camiseta_roja.jpg"}' http://localhost:5131/items/1
+Eliminar un item:
+
+bash
+Copy code
+curl -X DELETE http://localhost:5131/items/1
+Recuerda reemplazar 1 con el código real del item que deseas obtener, modificar o eliminar.

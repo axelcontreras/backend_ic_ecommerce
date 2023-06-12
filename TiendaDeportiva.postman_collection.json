@@ -1,0 +1,108 @@
+{
+	"info": {
+		"_postman_id": "d95a0b98-6382-4f1f-96ea-75b934d0bfd2",
+		"name": "TiendaDeportiva",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "10802524"
+	},
+	"item": [
+		{
+			"name": "http://localhost:5131/items",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"connection": true,
+					"accept-encoding": true,
+					"accept": true,
+					"host": true,
+					"user-agent": true
+				}
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:5131/items"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:5131/items/1",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5131/items/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5131",
+					"path": [
+						"items",
+						"1"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": null,
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:5131/items",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\": \"Nuevo Item 12NICOLAS3\",\r\n    \"talla\": \"M\",\r\n    \"color\": \"Rojo\",\r\n    \"precio\": 18.99,\r\n    \"cantidad\": 10,\r\n    \"imagen\": \"ruta/imagerrrr.png\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "text"
+						}
+					}
+				},
+				"url": "http://localhost:5131/items"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:5131/items/1",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"nombre\": \"Nuevo Nombre del Item\",\r\n  \"talla\": \"L\",\r\n  \"color\": \"Azul\",\r\n  \"precio\": 29.99,\r\n  \"cantidad\": 5,\r\n  \"imagen\": \"ruta/nueva_imagen.png\"\r\n}"
+				},
+				"url": "http://localhost:5131/items/1"
+			},
+			"response": []
+		}
+	]
+}
