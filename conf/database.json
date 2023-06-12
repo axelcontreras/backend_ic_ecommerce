@@ -1,6 +1,6 @@
 {
     "HOST": "localhost",
     "USER": "postgres",
-    "PASSWORD": "12345678",
-    "DATABASE": "itemsDB"
+    "PASSWORD": "nueva_contraseña",
+    "DATABASE": "itemsdb"
 }
