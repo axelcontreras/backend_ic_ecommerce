@@ -1,6 +1,6 @@
 {
     "HOST": "localhost",
     "USER": "postgres",
-    "PASSWORD": "nueva_contraseña",
+    "PASSWORD": "Junio2023+",
     "DATABASE": "itemsdb"
 }
