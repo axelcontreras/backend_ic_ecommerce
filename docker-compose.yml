@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+  postgres-db:
+    image: postgres:latest
+    ports:
+      - '5432:5432'
+    environment:
+      - POSTGRES_PASSWORD=Junio2023+
+      - POSTGRES_USER=postgres
+    volumes:
+      -  pgdata:/var/lib/postgresql/data
+      # Agrega esta línea para vincular el archivo SQL
+
+  flask-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - '8080:5131'
+    depends_on:
+      - postgres-db
+    command: python app.py  
+
+volumes:
+  pgdata:
