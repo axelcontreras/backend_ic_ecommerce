@@ -1,6 +1,7 @@
 {
-    "HOST": "localhost",
+    "HOST": "postgres-db",
     "USER": "postgres",
     "PASSWORD": "Junio2023+",
     "DATABASE": "itemsdb"
-}
+  }
+  
