@@ -10,8 +10,7 @@ services:
       - POSTGRES_USER=postgres
     volumes:
       -  pgdata:/var/lib/postgresql/data
-      -  ./init.sql:/docker-entrypoint-initdb.d/init.sql  # Vincula el archivo SQL al contenedor
-      # Agrega esta línea para vincular el archivo SQL
+      -  ./init.sql:/docker-entrypoint-initdb.d/init.sql  
 
   flask-app:
     build:
