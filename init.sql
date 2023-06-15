@@ -1,5 +1,6 @@
-     CREATE DATABASE itemsdb;
-     CREATE TABLE IF NOT EXISTS itemsdb.items (
+CREATE DATABASE itemsdb;
+\c itemsdb;
+CREATE TABLE IF NOT EXISTS items (
         codigo SERIAL PRIMARY KEY,
         nombre VARCHAR(255) NOT NULL,
         talla VARCHAR(50),

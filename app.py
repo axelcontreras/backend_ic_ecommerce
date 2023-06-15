@@ -2,11 +2,11 @@ from flask import Flask, jsonify, request
 import json
 import psycopg2
 import logging
-
+from flask_cors import CORS
 from utiles import *
 
 app = Flask(__name__)
-app.debug = True
+CORS(app, resources={r"/*": {"origins": "http://localhost:4200"}})
 
 
 @app.route('/items', methods=['GET'])
@@ -42,3 +42,4 @@ def delete_item(codigo):
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0',port=5131)
+

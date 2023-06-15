@@ -10,7 +10,10 @@ services:
       - POSTGRES_USER=postgres
     volumes:
       -  pgdata:/var/lib/postgresql/data
+
       # Agrega esta línea para vincular el archivo SQL
+
+      -  ./init.sql:/docker-entrypoint-initdb.d/init.sql 
 
   flask-app:
     build:
@@ -20,7 +23,7 @@ services:
       - '8080:5131'
     depends_on:
       - postgres-db
-    command: python app.py  
+    command: python app.py
 
 volumes:
   pgdata:
