@@ -24,6 +24,10 @@ services:
     depends_on:
       - postgres-db
     command: python app.py
+    volumes:
+      - ./:/app
+      - ruta:/app/ruta
 
 volumes:
   pgdata:
+  ruta:
