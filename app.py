@@ -10,7 +10,7 @@ from utiles import *
 from werkzeug.utils import secure_filename
 
 app = Flask(__name__)
-CORS(app, resources={r"/*": {"origins": "http://localhost:4200"}})
+CORS(app, resources={r"/*": {"origins": "http://20.206.79.159:4200"}})
 UPLOAD_FOLDER = 'ruta'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['ALLOWED_EXTENSIONS'] = {'jpg', 'jpeg', 'png', 'pdf'}
